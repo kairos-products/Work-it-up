@@ -1,0 +1,6 @@
+{
+  "name": "Workday Structurer",
+  "description": "Structure, time-block, and guide your daily work schedule with intelligent pacing, focus sessions, and real-time tracking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
