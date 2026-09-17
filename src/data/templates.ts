@@ -2,8 +2,131 @@ import { DayScheduleTemplate } from '../types';
 
 export const DAY_TEMPLATES: DayScheduleTemplate[] = [
   {
+    id: 'zeus-corporate-command',
+    name: 'ZEUS Corporate Executive Command (High-Leverage)',
+    tagline: 'Defend deep focus, defragment calendar, and audit meeting burn-rate',
+    description: 'Engineered for corporate directors, engineering leaders, and high-impact operators. Combines protected morning cognitive flow with batched afternoon meetings and real-time meeting burn analysis.',
+    pacingStyle: 'maker',
+    blocks: [
+      {
+        title: 'Morning Runway & Olympus Shield Activation',
+        type: 'kickoff',
+        startTime: '08:30',
+        endTime: '09:00',
+        durationMinutes: 30,
+        energyLevel: 'medium',
+        description: 'Review corporate priorities, check Olympus team radar, activate focus shield.',
+        tasks: [
+          { id: 'zc-k1', title: 'Define top high-leverage win for today', completed: false },
+          { id: 'zc-k2', title: 'Activate ZEUS Slack/Teams Focus Shield', completed: false },
+          { id: 'zc-k3', title: 'Audit today’s calendar for low-ROI meetings', completed: false }
+        ]
+      },
+      {
+        title: 'Deep Focus Sprint: Primary Deliverable & Architecture',
+        type: 'deep-work',
+        startTime: '09:00',
+        endTime: '11:30',
+        durationMinutes: 150,
+        energyLevel: 'high',
+        description: 'Peak circadian analytical sprint. Single-task uninterrupted execution on highest impact strategic outcome.',
+        tasks: [
+          { id: 'zc-dw1', title: 'Advance core architectural deliverable / model', completed: false },
+          { id: 'zc-dw2', title: 'Maintain zero inbox / no Slack communication check', completed: false }
+        ]
+      },
+      {
+        title: 'Restorative Refresh & Sensory Reset',
+        type: 'break',
+        startTime: '11:30',
+        endTime: '12:00',
+        durationMinutes: 30,
+        energyLevel: 'low',
+        description: 'Walk, physical stretch, hydrate, disconnect eyes from screen.',
+        tasks: []
+      },
+      {
+        title: 'Cross-Functional Strategy Sync (Roadmap Alignment)',
+        type: 'meeting',
+        startTime: '12:00',
+        endTime: '12:45',
+        durationMinutes: 45,
+        energyLevel: 'medium',
+        description: 'Departmental alignment meeting with product, engineering, and finance leads.',
+        attendeesCount: 5,
+        hourlyRateAvg: 160,
+        tasks: [
+          { id: 'zc-m1', title: 'Review unblocking milestones and cross-team dependencies', completed: false },
+          { id: 'zc-m2', title: 'Document key decisions in project register', completed: false }
+        ]
+      },
+      {
+        title: 'Executive Lunch & Disconnect',
+        type: 'break',
+        startTime: '12:45',
+        endTime: '13:30',
+        durationMinutes: 45,
+        energyLevel: 'low',
+        description: 'Nourishing meal away from digital screens.',
+        tasks: []
+      },
+      {
+        title: 'Operational Status & KPI Review Meeting',
+        type: 'meeting',
+        startTime: '13:30',
+        endTime: '14:15',
+        durationMinutes: 45,
+        energyLevel: 'medium',
+        description: 'Weekly operational metrics review (Candidate for ThunderShield AI async deflection).',
+        attendeesCount: 6,
+        hourlyRateAvg: 150,
+        tasks: [
+          { id: 'zc-m3', title: 'Evaluate whether this sync can be converted to async briefing', completed: false }
+        ]
+      },
+      {
+        title: 'Admin, Approvals & Communication Batching',
+        type: 'shallow-work',
+        startTime: '14:15',
+        endTime: '15:30',
+        durationMinutes: 75,
+        energyLevel: 'medium',
+        description: 'Process inbox, sign off on PRs/documents, unblock direct reports.',
+        tasks: [
+          { id: 'zc-sw1', title: 'Clear high-priority email inbox and direct messages', completed: false },
+          { id: 'zc-sw2', title: 'Approve vendor contracts and pending requests', completed: false }
+        ]
+      },
+      {
+        title: 'Secondary Deep Work: Synthesis & Documentation',
+        type: 'deep-work',
+        startTime: '15:30',
+        endTime: '16:45',
+        durationMinutes: 75,
+        energyLevel: 'high',
+        description: 'Wrap up technical documentation, review team PRs, synthesize meeting action items.',
+        tasks: [
+          { id: 'zc-dw3', title: 'Package deliverable for stakeholder distribution', completed: false }
+        ]
+      },
+      {
+        title: 'Executive Shutdown & Tomorrow’s Opening Move',
+        type: 'shutdown',
+        startTime: '16:45',
+        endTime: '17:15',
+        durationMinutes: 30,
+        energyLevel: 'low',
+        description: 'Log metrics, clear browser tabs, write tomorrow’s primary priority, disconnect.',
+        tasks: [
+          { id: 'zc-sd1', title: 'Log total focused hours & meeting burn reclaimed', completed: false },
+          { id: 'zc-sd2', title: 'Set tomorrow’s opening focus block', completed: false }
+        ]
+      }
+    ]
+  },
+  {
     id: 'balanced-flow',
-    name: 'Balanced Flow (Recommended)',
+    name: 'Balanced Flow',
     tagline: 'Optimal cognitive pacing with morning deep work and afternoon execution',
     description: 'Starts with a brief kickoff to set intentions, protects prime morning brainpower for deep work, dedicates early afternoon to collaboration & admin, and closes with a clean shutdown.',
     pacingStyle: 'balanced',

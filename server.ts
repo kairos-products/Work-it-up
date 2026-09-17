@@ -287,6 +287,93 @@ INSTRUCTIONS:
   }
 });
 
+// AI Meeting Deflector to Async Executive Briefing
+app.post('/api/ai/meeting-deflect', async (req, res) => {
+  try {
+    const {
+      meetingTitle = 'Sync',
+      attendeesCount = 4,
+      durationMinutes = 45,
+      agendaContext = '',
+    } = req.body;
+
+    const ai = getGeminiClient();
+
+    if (ai) {
+      try {
+        const prompt = `You are ZEUS ThunderShield™, an executive meeting elimination and asynchronous communication engine for corporate enterprises.
+Convert the following meeting into an airtight, high-leverage Asynchronous Memo & Slack/Teams Briefing so the attendees do not have to sit on a call:
+- Meeting Title: "${meetingTitle}"
+- Planned Attendees: ${attendeesCount} participants
+- Duration: ${durationMinutes} minutes
+- Context / Agenda: "${agendaContext || 'General status alignment, review milestones, identify blockers'}"
+
+Generate:
+1. An executive summary of why this is handled asynchronously.
+2. Structured bullet points for Progress / Updates.
+3. Explicit Decision Points requiring sign-off (with clear ownership).
+4. A polite, authoritative Slack/Teams message snippet ready to copy-paste.`;
+
+        const response = await ai.models.generateContent({
+          model: 'gemini-3.8-flash',
+          contents: prompt,
+          config: {
+            responseMimeType: 'application/json',
+            responseSchema: {
+              type: Type.OBJECT,
+              properties: {
+                memoHeadline: { type: Type.STRING },
+                executiveSummary: { type: Type.STRING },
+                updates: {
+                  type: Type.ARRAY,
+                  items: { type: Type.STRING },
+                },
+                decisionsNeeded: {
+                  type: Type.ARRAY,
+                  items: { type: Type.STRING },
+                },
+                slackMessageSnippet: { type: Type.STRING },
+              },
+              required: ['memoHeadline', 'executiveSummary', 'updates', 'decisionsNeeded', 'slackMessageSnippet'],
+            },
+          },
+        });
+
+        const parsed = JSON.parse(response.text || '{}');
+        return res.json({
+          memoHeadline: parsed.memoHeadline || `Async Briefing: ${meetingTitle}`,
+          executiveSummary: parsed.executiveSummary || 'Replacing synchronous block with async decision register.',
+          updates: parsed.updates || ['Deliverable milestones proceeding on schedule.', 'Dependencies mapped.'],
+          decisionsNeeded: parsed.decisionsNeeded || ['Review document comments by 4:00 PM EST.', 'Confirm signoff.'],
+          slackMessageSnippet: parsed.slackMessageSnippet || `⚡ ZEUS ThunderShield: Converting our ${durationMinutes}m sync on "${meetingTitle}" to an async brief to protect deep work. Please drop approvals below.`,
+          source: 'gemini',
+        });
+      } catch (geminiError) {
+        console.warn('Gemini deflect fallback:', geminiError);
+      }
+    }
+
+    // Algorithmic Fallback
+    return res.json({
+      memoHeadline: `Executive Async Memo: ${meetingTitle}`,
+      executiveSummary: `Deflected ${durationMinutes}m synchronous meeting to protect focus bandwidth. All stakeholders please review the action items below asynchronously.`,
+      updates: [
+        'Core objectives tracked and documented in project repository.',
+        'No blocking architectural impediments detected for current sprint.',
+      ],
+      decisionsNeeded: [
+        'Please review the attached briefing notes and react with :white_check_mark: to approve by EOD.',
+        'If urgent escalation is needed, reach out in the designated VIP channel.',
+      ],
+      slackMessageSnippet: `⚡ [ZEUS Shield] Converting our "${meetingTitle}" (${durationMinutes}m, ${attendeesCount} participants) into an async update to reclaim focus. Please review and reply with your approvals.`,
+      source: 'algorithmic',
+    });
+  } catch (err: any) {
+    console.error('Error deflecting meeting:', err);
+    res.status(500).json({ error: 'Failed to deflect meeting', details: err.message });
+  }
+});
+
 // Helper for minutes to HH:MM and back
 function toMinutes(hhmm: string): number {
   const [h, m] = hhmm.split(':').map(Number);

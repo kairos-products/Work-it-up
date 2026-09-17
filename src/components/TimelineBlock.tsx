@@ -145,6 +145,28 @@ export const TimelineBlock: React.FC<TimelineBlockProps> = ({
               <span>{visuals.label}</span>
             </span>
 
+            {/* Corporate Meeting Burn Pill */}
+            {block.type === 'meeting' && (
+              <span className="inline-flex items-center gap-1 text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-200">
+                <span>Burn:</span>
+                <span>${Math.round((block.durationMinutes / 60) * (block.attendeesCount || 4) * (block.hourlyRateAvg || 140))}</span>
+              </span>
+            )}
+
+            {/* Deflected Badge */}
+            {block.isDeflectedToAsync && (
+              <span className="inline-flex items-center gap-1 text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                ⚡ Deflected to Async
+              </span>
+            )}
+
+            {/* Compressed Badge */}
+            {block.isCompressed && (
+              <span className="inline-flex items-center gap-1 text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-800">
+                ⚡ Speed-Meeting
+              </span>
+            )}
+
             {/* Energy level badge */}
             {block.energyLevel && block.type === 'deep-work' && (
               <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-purple-100 text-purple-800">

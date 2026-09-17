@@ -1,6 +1,6 @@
 {
-  "name": "Workday Structurer",
-  "description": "Structure, time-block, and guide your daily work schedule with intelligent pacing, focus sessions, and real-time tracking.",
+  "name": "ZEUS — Enterprise Workforce & Cognitive Flow OS",
+  "description": "High-command enterprise workforce OS and cognitive scheduling platform. Built for corporate focus, meeting cost deflation, team synchronicity, and circadian performance.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
